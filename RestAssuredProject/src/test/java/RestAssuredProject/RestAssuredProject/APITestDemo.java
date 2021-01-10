@@ -36,9 +36,9 @@ public class APITestDemo {
 		
 
 		HashMap<String,Object> data = new HashMap();
-		
+		data.put("id", 121);
 		HashMap<String,Object> catData = new HashMap();
-		catData.put("id", "25");
+		catData.put("id", 121);
 		catData.put("name", "Pet Category");
 		data.put("category", catData);
 		data.put("name", "doggie");
@@ -47,7 +47,7 @@ public class APITestDemo {
 		List<Object> tagsList = new ArrayList();
 		
 		Map<String,Object> tagData = new HashMap();
-		tagData.put("id", "1");
+		tagData.put("id", 121);
 		tagData.put("name", "Golden retriever");
 		tagsList.add(tagData);
 		data.put("tags", tagsList);
@@ -75,9 +75,9 @@ public class APITestDemo {
 	public void updateTest() {
 	
 	HashMap<String,Object> data = new HashMap();
-	
+	data.put("id", 121);
 	HashMap<String,Object> catData = new HashMap();
-	catData.put("id", "25");
+	catData.put("id", 121);
 	catData.put("name", "Pet Category");
 	data.put("category", catData);
 	data.put("name", "doggie");
@@ -86,7 +86,7 @@ public class APITestDemo {
 	List<Object> tagsList = new ArrayList();
 	
 	Map<String,Object> tagData = new HashMap();
-	tagData.put("id", "1");
+	tagData.put("id", 121);
 	tagData.put("name", "Golden retriever");
 	tagsList.add(tagData);
 	data.put("tags", tagsList);
@@ -111,10 +111,11 @@ public class APITestDemo {
 	public void deleteUpdatedAPI() {
 		given()
 		.when()
-			.delete("https://petstore.swagger.io/v2/pet/25")
+			.delete("https://petstore.swagger.io/v2/pet/121")
 		.then()
-			.statusCode(200)
-			.log().body()
-			.extract().response();
+		.assertThat()
+		.statusCode(200)
+		.log().body()
+		.extract().response();
 	}
 }
